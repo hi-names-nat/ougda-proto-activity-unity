@@ -17,5 +17,6 @@ public class Enemy : MonoBehaviour
         //Make it so when it gets close to a tower, the tower is attacked
         //Harm will be controlled thru ObjectHealth.cs
         //Having just one enemy is OK for now, but I'm gonna make at least like... 3 towers :)
+        transform.Translate(Vector3.left * Time.deltaTime);
     }
 }
