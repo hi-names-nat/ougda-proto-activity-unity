@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 3911257009062886792}
   - component: {fileID: 1060981948524621508}
   - component: {fileID: 4025470674703362322}
+  - component: {fileID: 4926188119907519978}
+  - component: {fileID: 6393510962455574503}
   m_Layer: 0
   m_Name: Spiky
   m_TagString: Untagged
@@ -144,6 +146,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1834734483856309882}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f137f2c2d9aedf547a69eb6c85120c8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c720f9bfd7849d48175c00c2204052d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCooldownTime: 5
+--- !u!114 &4926188119907519978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834734483856309882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2303fae8736ddcd2a273ea07c2210b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  onHurt:
+    m_PersistentCalls:
+      m_Calls: []
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
+  meterUI: {fileID: 0}
+--- !u!95 &6393510962455574503
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834734483856309882}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8617d3dad4c5b63feae5d1f69853a1de, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

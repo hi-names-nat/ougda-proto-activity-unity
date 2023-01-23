@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
+
+//This is a script that gives an object a health system.
 public class ObjectHealth : MonoBehaviour
 {
     //The maximum health value that the object starts with
@@ -22,6 +24,7 @@ public class ObjectHealth : MonoBehaviour
     //This is used only on the player's instance
     [SerializeField] private MeterUIManager meterUI;
 
+    //run before the game starts
     private void Awake()
     {
         _currentHealth = maxHealth;

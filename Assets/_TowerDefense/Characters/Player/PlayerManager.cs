@@ -13,11 +13,20 @@ namespace _TowerDefense.Player {
         //The player's camera. Labelled as SerializeField so we can set it in Unity.
         private Camera _playerCamera;
 
+        //the object (tower) that the player currently has
         [SerializeField] private Placement heldObject = null;
+        //the cost of the object currently being held, so we can
+        //subtract it from mana if the player places it.
+        private float _heldObjectCost = -1;
 
+        //A reference to the player's healh and mana bar manager
         [SerializeField] private MeterUIManager meterUI;
+        
+        //The maximum mana that the player can have. Used to make units
         [SerializeField] private float maxMana = 100;
+        //THe current mana the player has
         private float _currentMana;
+        //The amount of mana the player is given per second
         [SerializeField] private float manaPerSecond = 5;
         
         //Awake is called during scene loading
@@ -39,8 +48,14 @@ namespace _TowerDefense.Player {
                 
                 if (Input.GetMouseButtonDown(0) && heldObject.isInValidSpot) //The mouse has been clicked.
                 {
+                    //spend the mana
+                    _currentMana -= _heldObjectCost;
+                    
+                    //place the object
                     heldObject.PlaceObject();
                     heldObject = null;
+                    
+                    meterUI.SetMagicMeter(_currentMana / maxMana);
                 }
                 else if (Input.GetKey(KeyCode.Escape))
                 {
@@ -70,7 +85,9 @@ namespace _TowerDefense.Player {
             return hitInfo.collider != null ? hitInfo.collider.gameObject : null;
         }
 
-        public void CreateAndAttachUnit(GameObject unitToCreate, float ManaCost)
+        //This is the function that the create unit button calls to create our unit (tower) and attach it to the 
+        //player manager
+        public void CreateAndAttachUnit(GameObject unitToCreate, float manaCost)
         {
             if (heldObject != null)
             {
@@ -78,9 +95,9 @@ namespace _TowerDefense.Player {
             }
             
             var newObject = Object.Instantiate(unitToCreate, null);
+            _heldObjectCost = manaCost;
             heldObject = newObject.GetComponent<Placement>();
-            _currentMana -= ManaCost;
-            meterUI.SetMagicMeter(_currentMana / maxMana);
+
         }
     }
 }
