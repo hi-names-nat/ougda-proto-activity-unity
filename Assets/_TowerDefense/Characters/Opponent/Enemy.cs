@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
 
     private Vector3 targetPosition;
 
+    private bool rotation = false;
+
 
 
     
@@ -22,6 +24,8 @@ public class Enemy : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(startX, startY, -0.1f);
         targetPosition = new Vector3(endX, endY, -0.1f);
+        
+        StartCoroutine(Wiggle());
     }
 
     // Update is called once per frame
@@ -34,5 +38,23 @@ public class Enemy : MonoBehaviour
         //Harm will be controlled thru ObjectHealth.cs
         //Having just one enemy is OK for now, but I'm gonna make at least like... 3 towers :)
         transform.Translate(Vector3.left * Time.deltaTime);
+        
     }
+
+    IEnumerator Wiggle(){
+        while(true){
+            if(rotation){
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 30);
+                rotation = !rotation;
+            } else{
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, -30);
+                rotation = !rotation;
+            }
+        yield return new WaitForSeconds(0.5f);     //TODO: to make it look better, have a random offset once we get rng unfucked.
+        }
+    }
+
+
+
+    //protected abstract void OnContact(); If I want to set this up so the mantis can teleport. low priority
 }

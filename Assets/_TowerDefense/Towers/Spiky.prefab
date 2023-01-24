@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4025470674703362322}
   - component: {fileID: 4926188119907519978}
   - component: {fileID: 6393510962455574503}
+  - component: {fileID: -7930579087673065409}
   m_Layer: 0
   m_Name: Spiky
   m_TagString: Untagged
@@ -150,6 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldownTime: 5
+  attackRange: 3
+  attackDamage: 100
+  numberHittableAtOnce: 3
 --- !u!114 &4926188119907519978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +194,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &-7930579087673065409
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834734483856309882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.55, z: 1}
+  m_Center: {x: 0.1, y: 0.25, z: 0}
