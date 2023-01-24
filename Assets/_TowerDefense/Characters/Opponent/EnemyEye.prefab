@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6408144978811801317}
   - component: {fileID: 8535699385054173310}
   - component: {fileID: 7937385649349855049}
+  - component: {fileID: 5479915345183705917}
   m_Layer: 0
   m_Name: EnemyEye
   m_TagString: Untagged
@@ -52,6 +53,8 @@ MonoBehaviour:
   endX: -9
   endY: 4
   speed: 4
+  damage: 20
+  attackspeed: 1
 --- !u!114 &8535699385054173310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +74,7 @@ MonoBehaviour:
   onDie:
     m_PersistentCalls:
       m_Calls: []
+  meterUI: {fileID: 0}
 --- !u!95 &7937385649349855049
 Animator:
   serializedVersion: 5
@@ -91,6 +95,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &5479915345183705917
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133371916042586102}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4543881163687238266
 GameObject:
   m_ObjectHideFlags: 0

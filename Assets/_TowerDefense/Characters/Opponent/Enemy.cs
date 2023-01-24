@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]private int startX = 2;
+    [SerializeField]private int startX = 2;   //start & goal locations 
     [SerializeField]private int startY = 2;
 
     [SerializeField]private int endX = -9;
     [SerializeField]private int endY = -9;
 
-    [SerializeField]private float speed = 3.0f;
+    [SerializeField]private float speed = 3.0f; //speed
+    [SerializeField]private float damage = 20.0f;  //damage dealt to towers
+    [SerializeField]private float attackspeed = 1.0f; //how quickly it attacks
 
     private Vector3 targetPosition;
+
+    private bool moving = true;
 
     private bool rotation = false;
 
@@ -31,13 +35,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float deltaSpeed = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, deltaSpeed);
-        //Give it two points, let it move from point A to B
-        //Make it so when it gets close to a tower, the tower is attacked
-        //Harm will be controlled thru ObjectHealth.cs
-        //Having just one enemy is OK for now, but I'm gonna make at least like... 3 towers :)
-        transform.Translate(Vector3.left * Time.deltaTime);
+        if(moving){
+            float deltaSpeed = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, deltaSpeed);
+            //Give it two points, let it move from point A to B
+            //Make it so when it gets close to a tower, the tower is attacked
+            //Harm will be controlled thru ObjectHealth.cs
+            //Having just one enemy is OK for now, but I'm gonna make at least like... 3 towers :)
+            //transform.Translate(Vector3.left * Time.deltaTime);
+        }
         
     }
 
@@ -54,6 +60,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other){
+        Debug.Log("collided");
+        if(other.tag == "tower"){
+            moving = false;
+            ObjectHealth towerhealth = other.GetComponent<ObjectHealth>();
+            StartCoroutine(AttackMode(other, towerhealth));
+            
+        }
+
+    }
+
+    IEnumerator AttackMode(Collider other, ObjectHealth towerhealth){
+        bool attacking = true;
+        while(attacking){
+            towerhealth.Attacked(damage);
+            yield return new WaitForSeconds(attackspeed);
+            if(other == null){
+                attacking = false;
+            }
+        }
+    }
+
+    
 
 
     //protected abstract void OnContact(); If I want to set this up so the mantis can teleport. low priority
