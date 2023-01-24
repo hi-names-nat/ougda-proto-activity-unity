@@ -71,6 +71,11 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void YourHonor(){
+        Debug.Log("League of Legends");
+        Destroy(gameObject);              //Death
+    }
+
     IEnumerator AttackMode(Collider other, ObjectHealth towerhealth){
         bool attacking = true;
         while(attacking){
