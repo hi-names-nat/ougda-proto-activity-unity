@@ -93,7 +93,12 @@ namespace _TowerDefense.Player {
             {
                 return;
             }
-            
+
+            if (_currentMana < manaCost)
+            {
+                return;
+            }
+
             var newObject = Object.Instantiate(unitToCreate, null);
             _heldObjectCost = manaCost;
             heldObject = newObject.GetComponent<Placement>();

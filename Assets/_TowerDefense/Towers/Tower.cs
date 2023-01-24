@@ -22,7 +22,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected int numberHittableAtOnce = 3;
 
     //The animator attached.
-    private Animator Animator;
+    private Animator _animator;
 
     //When hitting enemies, the enemies we hit
     protected RaycastHit2D[] Hits;
@@ -32,7 +32,7 @@ public abstract class Tower : MonoBehaviour
     private void Awake()
     {
         Hits = new RaycastHit2D[numberHittableAtOnce];
-        Animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         _currentCooldownTime = attackCooldownTime;
 
     }
@@ -49,15 +49,18 @@ public abstract class Tower : MonoBehaviour
         //Setup a contact filter, essentially what the raycast can and can't hit
         var contactFilter = new ContactFilter2D
         {
+            //We set a specific layer to only hit that layer
             layerMask = LayerMask.GetMask("Enemies")
         };
         
         //Do our raycast
         NumHit = Physics2D.Raycast(transform.position, Vector2.right, contactFilter, Hits, attackRange);
+        Debug.DrawRay(transform.position, Vector2.right * attackDamage, Color.green);
+        print(NumHit);
         if (NumHit == 0) return;
         
         //Do our animation
-        Animator.SetTrigger("Attack");
+        _animator.SetTrigger("Attack");
         
         //Reset our timer
         _currentCooldownTime = attackCooldownTime;

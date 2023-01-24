@@ -38,6 +38,9 @@ public class ObjectHealth : MonoBehaviour
         
         if (_currentHealth <= 0) //If the current health is less or equal to zero...
         {
+            //Make the player's health empty!
+            UpdatePlayerUI();
+            
             //We invoke the OnDie event!
             Debug.Log("Oof ouch owie my bones");
             onDie.Invoke();

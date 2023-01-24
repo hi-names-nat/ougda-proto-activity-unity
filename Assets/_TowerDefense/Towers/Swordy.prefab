@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2167f74a6fc29b2ce9ac1c446afd8790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldownTime: 5
+  attackCooldownTime: 1
   attackRange: 3
   attackDamage: 100
   numberHittableAtOnce: 3
@@ -173,7 +173,19 @@ MonoBehaviour:
       m_Calls: []
   onDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1834734483856309882}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   meterUI: {fileID: 0}
 --- !u!95 &5057113943298293422
 Animator:
