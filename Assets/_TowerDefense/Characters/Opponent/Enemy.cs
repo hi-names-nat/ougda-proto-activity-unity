@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    // [SerializeField]
+    // private Vector2 Origin;
+    // [SerializeField]
+    // private Vector2 Goal;
+    //Maybe replace with node-based
+    
     [SerializeField]private int startX = 2;   //start & goal locations 
     [SerializeField]private int startY = 2;
 
@@ -87,8 +93,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    
-
+    public void SetY(int origin, int goal)
+    {
+        startY = origin;
+        endY = goal;
+    }
 
     //protected abstract void OnContact(); If I want to set this up so the mantis can teleport. low priority
 }

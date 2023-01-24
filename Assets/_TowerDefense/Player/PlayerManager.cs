@@ -68,7 +68,7 @@ namespace _TowerDefense.Player {
 
         private void GainMana()
         {
-            _currentMana += Mathf.Min(manaPerSecond * Time.deltaTime, maxMana);
+            _currentMana = Mathf.Min(_currentMana + (manaPerSecond * Time.deltaTime), maxMana);
             meterUI.SetMagicMeter(_currentMana / maxMana);
         }
 
