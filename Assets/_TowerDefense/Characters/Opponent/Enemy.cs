@@ -42,13 +42,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if(moving){
-            float deltaSpeed = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, deltaSpeed);
-            //Give it two points, let it move from point A to B
-            //Make it so when it gets close to a tower, the tower is attacked
-            //Harm will be controlled thru ObjectHealth.cs
-            //Having just one enemy is OK for now, but I'm gonna make at least like... 3 towers :)
-            //transform.Translate(Vector3.left * Time.deltaTime);
+            //We need to make the thing move if its moving...
         }
         
     }
@@ -96,7 +90,7 @@ public class Enemy : MonoBehaviour
     public void SetY(int origin, int goal)
     {
         startY = origin;
-        endY = goal;
+        endY = goal;    
     }
 
     //protected abstract void OnContact(); If I want to set this up so the mantis can teleport. low priority

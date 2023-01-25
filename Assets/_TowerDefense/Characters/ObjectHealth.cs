@@ -34,7 +34,7 @@ public class ObjectHealth : MonoBehaviour
     // This function will take the Damage and apply it to the current health.
     public void Attacked(float damage)
     {
-        _currentHealth -= damage;
+        //What do we need to do here to make the health go down?
         
         if (_currentHealth <= 0) //If the current health is less or equal to zero...
         {
@@ -47,8 +47,7 @@ public class ObjectHealth : MonoBehaviour
         }
         else
         {
-            //If not we invoke the onHurt event.
-            onHurt.Invoke();
+            // We didn't get hurt... Do we need to do anything?
         }
     }
 

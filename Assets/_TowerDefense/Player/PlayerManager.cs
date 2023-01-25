@@ -46,7 +46,7 @@ namespace _TowerDefense.Player {
                 position = new Vector3(Mathf.Round(position.x), Mathf.Round(position.y));
                 heldObject.transform.position = position;
                 
-                if (Input.GetMouseButtonDown(0) && heldObject.isInValidSpot) //The mouse has been clicked.
+                if (Input.GetMouseButtonDown(0) && heldObject.isInValidSpot) //The mouse left has been clicked.
                 {
                     //spend the mana
                     _currentMana -= _heldObjectCost;
@@ -68,23 +68,11 @@ namespace _TowerDefense.Player {
 
         private void GainMana()
         {
-            _currentMana = Mathf.Min(_currentMana + (manaPerSecond * Time.deltaTime), maxMana);
-            meterUI.SetMagicMeter(_currentMana / maxMana);
+            //What do we need to do to make sure that
+            // 1: The mana meter grows little by little
+            // 2: the mana meter doesn't go below 0 or above 100
+            // 3 : the UI is updated?
         }
-
-        //We call this to get the object under the cursor
-        private GameObject GetObjectUnderCursor()
-        {
-            //Get a ray from the mouse to what it's over on the screen
-            Ray MouseLocation = _playerCamera.ScreenPointToRay(Input.mousePosition);
-            
-            //We cast a ray from the mouse position. Stuff about that is stored in hitInfo.
-            Physics.Raycast(MouseLocation, out var hitInfo);
-            
-            //send back the GameObject that we got, or null if we didn't get anything
-            return hitInfo.collider != null ? hitInfo.collider.gameObject : null;
-        }
-
         //This is the function that the create unit button calls to create our unit (tower) and attach it to the 
         //player manager
         public void CreateAndAttachUnit(GameObject unitToCreate, float manaCost)
@@ -98,11 +86,27 @@ namespace _TowerDefense.Player {
             {
                 return;
             }
+            
+            //How do we create a new object??
 
-            var newObject = Object.Instantiate(unitToCreate, null);
             _heldObjectCost = manaCost;
-            heldObject = newObject.GetComponent<Placement>();
+            //We need to attach our new object it to playermanager......
 
         }
     }
+    
+    // We call this to get the object under the cursor
+    // If you'd like to impliment this for tower upgrades or something, go ahead! This code already works.
+    // You'll need a way to be able to do stuff because it was clicked.
+    /* private GameObject GetObjectUnderCursor()
+     {
+         //Get a ray from the mouse to what it's over on the screen
+         Ray MouseLocation = _playerCamera.ScreenPointToRay(Input.mousePosition);
+         //We cast a ray from the mouse position. Stuff about that is stored in hitInfo.
+         
+         Physics.Raycast(MouseLocation, out var hitInfo);
+         
+         //send back the GameObject that we got, or null if we didn't get anything
+         return hitInfo.collider != null ? hitInfo.collider.gameObject : null;
+     } */
 }

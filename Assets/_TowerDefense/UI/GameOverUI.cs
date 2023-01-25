@@ -1,3 +1,4 @@
+//Don't worry about this script.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

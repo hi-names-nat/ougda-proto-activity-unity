@@ -1,5 +1,10 @@
+//(c) 2023 Isaac Phillips.
+//don't worry about this script.
+
 using System.Collections;
 using UnityEngine;
+
+// REFACTOR!!!
 
 public class WaveManager : MonoBehaviour
 {

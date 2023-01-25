@@ -4,7 +4,8 @@ namespace _TowerDefense.Towers
     {
         protected override void DoAttack()
         {
-            
+            //You can impliment this guy with your own behavior.
+            //he was left intentionally blank so you could do something.
         }
     }
 }

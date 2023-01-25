@@ -1,3 +1,4 @@
+//Don't worry about this script.
 using System.Collections;
 using System.Collections.Generic;
 using _TowerDefense.Player;
@@ -17,6 +18,7 @@ public class CreateUnitButton : MonoBehaviour
     //a helper function so our button can actually call this function.
     public void CreateUnit()
     {
+
         playerManager.CreateAndAttachUnit(unit.gameObject, cost);
     }
 }

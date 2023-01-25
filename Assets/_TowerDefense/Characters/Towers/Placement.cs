@@ -9,14 +9,18 @@ public class Placement : MonoBehaviour
     [SerializeField] private SpriteRenderer thisSprite;
     [SerializeField] private Tower tower;
     
-    [SerializeField] private Color acceptableSnapColor;
-    [SerializeField] private Color unacceptableSnapColor;
+    //We want to be able to access these in Unity's inspector.. How do we do that
+    //Hint: it's everywhere!!!
+    private Color acceptableSnapColor;
+    private Color unacceptableSnapColor;
 
     public bool isInValidSpot = false;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        acceptableSnapColor = Color.green;
+        unacceptableSnapColor = Color.red;
         TryGetComponent(out tower);
     }
 

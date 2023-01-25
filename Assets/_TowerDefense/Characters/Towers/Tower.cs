@@ -9,6 +9,10 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(ObjectHealth))]
 public abstract class Tower : MonoBehaviour
 {
+    //Something is wrong with our variables, but it will take a project-centric approach to figure out what...
+    //hint: does anything inherit this script?
+    //Inheritance is using a class as a basis for another. Are there any scripts that might use this one as a basis?
+
     //Time between each tower action
     [SerializeField] protected float attackCooldownTime = 5f;
     //The current state of cooldown
@@ -25,9 +29,9 @@ public abstract class Tower : MonoBehaviour
     private Animator _animator;
 
     //When hitting enemies, the enemies we hit
-    protected RaycastHit2D[] Hits;
+    private RaycastHit2D[] Hits;
     //The number of enemies we hit
-    protected int NumHit;
+    private int NumHit;
 
     private void Awake()
     {
@@ -53,14 +57,18 @@ public abstract class Tower : MonoBehaviour
             layerMask = LayerMask.GetMask("Enemies")
         };
         
-        //Do our raycast
-        NumHit = Physics2D.Raycast(transform.position, Vector2.right, contactFilter, Hits, attackRange);
-        Debug.DrawRay(transform.position, Vector2.right * attackDamage, Color.green);
+        //We want to do our raycast so that we get what we're going to hit... How do we do that?
+        //We also want to make sure we use our contactFilter or else we're just going to hit the background 
+        //when we try
+        //hint: look at ths: https://docs.unity3d.com/2021.3/Documentation/ScriptReference/Physics2D.Raycast.html
+        //  specfically the second one.
+        
+        //here's a visualization of the ray we're going to cast, hpefully it helps.
+        Debug.DrawRay(transform.position, Vector2.right * attackRange, Color.green);
         print(NumHit);
         if (NumHit == 0) return;
         
-        //Do our animation
-        _animator.SetTrigger("Attack");
+        //We need to do our animation...
         
         //Reset our timer
         _currentCooldownTime = attackCooldownTime;
